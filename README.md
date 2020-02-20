@@ -9,4 +9,3 @@ Luis Felipe Piedra Walsh
 
 ## Laboratorio de moviles 01 y 02
 Profesor: Juan Murillo
-
