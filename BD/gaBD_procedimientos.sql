@@ -21,3 +21,72 @@ END
 //
 DELIMITER ;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Procedimientos de Carrera
+
+DROP PROCEDURE IF EXISTS gabd.PRC_INS_CARRERA;
+
+DELIMITER //
+CREATE PROCEDURE PRC_INS_CARRERA(codigo_ varchar(10), titulo_ varchar(25),nombre_ varchar(100))
+BEGIN
+	insert into gabd.carrera (codigo, titulo, nombre) 
+	values (codigo_,titulo_,nombre_);
+END
+//
+DELIMITER ;
+
