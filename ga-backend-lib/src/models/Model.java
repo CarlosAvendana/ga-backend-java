@@ -7,8 +7,8 @@ package models;
 
 /**
  *
- * @author carlos
+ * @author Luis Felipe
  */
-public class Datos {
+public class Model {
     
 }
