@@ -1,4 +1,4 @@
--- Procedimientos para cursos
+use gabd; 
 
 DROP PROCEDURE IF EXISTS PRC_INS_CURSO;
 
@@ -22,8 +22,8 @@ END
 //
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS PRC_UPD_CURSO;
+
 DELIMITER //
 CREATE PROCEDURE PRC_UPD_CURSO(codigo_ varchar(10), carrera_codigo_ varchar(10),anio_ varchar(15),ciclo_ varchar(15),nombre_ varchar(100), creditos_ int, horas_semanales_ int)
 BEGIN
@@ -34,7 +34,7 @@ END
 //
 DELIMITER ; 
 
-drop procedure IF EXISTS PRC_ObtieneTODOS_CURSOS;
+DROP PROCEDURE IF EXISTS PRC_ObtieneTODOS_CURSOS;
 
 DELIMITER //
 CREATE PROCEDURE PRC_ObtieneTODOS_CURSOS()
@@ -44,8 +44,6 @@ END
 //
 DELIMITER ;
 
--- Procedimientos de Carrera
-
 DROP PROCEDURE IF EXISTS PRC_INS_CARRERA;
 
 DELIMITER //
@@ -53,16 +51,39 @@ CREATE PROCEDURE PRC_INS_CARRERA(codigo_ varchar(10), titulo_ varchar(25),nombre
 BEGIN
 	insert into gabd.carrera (codigo, titulo, nombre) 
 	values (codigo_,titulo_,nombre_);
-drop procedure IF EXIST PRC_UPD_CURSO;
-
+END
+//
+DELIMITER ;
+	
 DROP PROCEDURE IF EXISTS PRC_DEL_CARRERA;
 
 DELIMITER //
 CREATE PROCEDURE PRC_DEL_CARRERA(codigo_ varchar(10))
 BEGIN 
-	delete from gabd.curso 
+	delete from gabd.carrera 
 	where codigo=codigo_;
 END
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS PRC_UPD_CARRERA;
+
+DELIMITER //
+CREATE PROCEDURE PRC_UPD_CARRERA(codigo_ varchar(10), titulo_ varchar(25),nombre_ varchar(100))
+BEGIN
+	update gabd.carrera
+	set codigo=codigo_,titulo=titulo_,nombre=nombre_
+	where codigo=codigo_;
+END
+//
+DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS PRC_ObtieneTODOS_CARRERA;
+
+DELIMITER //
+CREATE PROCEDURE PRC_ObtieneTODOS_CARRERA()
+BEGIN
+	SELECT codigo, titulo, nombre FROM gadb.carrera;
+END 
+//
+DELIMITER ;
