@@ -4,6 +4,7 @@ import exceptions.GlobalException;
 import exceptions.NoDataException;
 import gaBackend.modelo.Curso;
 import static gaBackend.modelo.dao.Service.connection;
+import static gaBackend.modelo.dao.Service.disconnect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,14 +30,6 @@ public class GestorCurso {
         }
         return instancia;
     }
-
-//    `codigo` VARCHAR(10) NOT NULL,
-//  `carrera_codigo` VARCHAR(10) NOT NULL,
-//  `anio` VARCHAR(15) NULL,
-//  `ciclo` VARCHAR(15) NULL,
-//  `nombre` VARCHAR(100) NULL,
-//  `creditos` INT NULL,
-//  `horas_semanales` INT NULL,
     
     public List<Curso> listarCursos() throws NoDataException, GlobalException {
         List<Curso> cursos = new ArrayList<>();
@@ -54,12 +47,14 @@ public class GestorCurso {
                 int horasB = rs.getInt("horas_semanales");
                 
                 cursos.add(new Curso(codigoB,carrera_codigoB,anioB,cicloB,nombreB,creditosB,horasB));
-            }    
+            } 
+            disconnect();
         } catch (ClassNotFoundException ex) {
             throw new GlobalException("No se ha localizado el Driver");
         } catch (SQLException e) {
             throw new NoDataException("La base de datos no se encuentra disponible");
         } 
+        
         return cursos;
     }
 }
