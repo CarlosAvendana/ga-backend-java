@@ -31,7 +31,7 @@ public class GestorCarrera {
     private static final String INSERTARCARRERA = "{call PRC_INS_CARRERA( ?, ?, ?)}";
     private static final String BORRARCARRERA = "{call PRC_DEL_CARRERA(?)}";
     private static final String ACTUALIZARCARRERA = "{call PRC_UPD_CARRERA(?, ?, ?)}";
-    private static final String LISTARCARRERAS = "{?=call PRC_ObtieneTODOS_CARRERA()}";
+    private static final String LISTARCARRERAS = "{call PRC_ObtieneTODOS_CARRERA()}";
     //Falta el buscar Carrera
 
     // C(reate)
@@ -78,7 +78,6 @@ public class GestorCarrera {
                 String codigoB = rs.getString("codigo");
                 String tituloB = rs.getString("titulo");
                 String nombreB = rs.getString("nombre");
-
                 carreras.add(new Carrera(codigoB, tituloB, nombreB));
             }
             disconnect();

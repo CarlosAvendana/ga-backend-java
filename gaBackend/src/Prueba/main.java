@@ -5,6 +5,7 @@ import exceptions.NoDataException;
 import gaBackend.modelo.Carrera;
 import gaBackend.modelo.Curso;
 import gaBackend.modelo.dao.GestorCarrera;
+import gaBackend.modelo.dao.GestorCurso;
 import java.util.List;
 
 /**
@@ -17,8 +18,10 @@ public class main {
 
         Carrera carrera1 = new Carrera("X", "X", "X");
         List<Carrera> lista = GestorCarrera.obtenerInstancia().listarCarreras();
-        lista.toString();
-
+        System.out.println(lista.toString());
+        
+        List<Curso> listC = GestorCurso.obtenerInstancia().listarCursos();
+        System.out.println(listC.toString());
     }
 
 }

@@ -20,7 +20,7 @@ public class GestorCurso {
     private static final String INSERTARCURSO = "{call PRC_INS_CURSO(?,?,?)}";
     private static final String BORRARCURSO = "{call PRC_DEL_CURSO(?,?,?)}";
     private static final String ACTUALIZACURSO = "{call PRC_UPD_CURSO(?,?,?)}";
-    private static final String LISTARCURSOS = "{?=call PRC_ObtieneTODOS_CURSOS()}";
+    private static final String LISTARCURSOS = "{call PRC_ObtieneTODOS_CURSOS()}";
 
     private static GestorCurso instancia = null;
 
@@ -31,7 +31,7 @@ public class GestorCurso {
         return instancia;
     }
     
-    public List<Curso> listarCursos() throws NoDataException, GlobalException {
+    public List<Curso> listarCursos() throws GlobalException, NoDataException  {
         List<Curso> cursos = new ArrayList<>();
         try {
             connection();
