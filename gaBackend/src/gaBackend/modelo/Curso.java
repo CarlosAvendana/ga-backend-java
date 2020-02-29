@@ -10,7 +10,7 @@ public class Curso {
     private String carrera_codigo;
     private String anio;
     private String ciclo;
-    private int nombre;
+    private String nombre;
     private int creditos;
     private int horas_semanales;
 
@@ -19,12 +19,12 @@ public class Curso {
         carrera_codigo = new String();
         anio = new String();
         ciclo = new String();
-        nombre = 0;
+        nombre = new String();
         creditos = 0;
         horas_semanales = 0;
     }
 
-    public Curso(String codigo, String carrera_codigo, String anio, String ciclo, int nombre, int creditos, int horas_semanales) {
+    public Curso(String codigo, String carrera_codigo, String anio, String ciclo, String nombre, int creditos, int horas_semanales) {
         this.codigo = codigo;
         this.carrera_codigo = carrera_codigo;
         this.anio = anio;
@@ -66,11 +66,11 @@ public class Curso {
         this.ciclo = ciclo;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
