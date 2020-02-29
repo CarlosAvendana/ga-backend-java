@@ -18,10 +18,11 @@ public class ListaCarrera {
     public void agregar(Carrera nuevaCarrera) {
         listaCarrera.add(nuevaCarrera);
     }
-    public void actualizar (GestorCarrera gestor){
-    for(Carrera c:listaCarrera){
-    try{}
-    }
-    }
+    
+//    public void actualizar (GestorCarrera gestor){
+//    for(Carrera c:listaCarrera){
+//    try{}
+//    }
+//    }
 
 }
