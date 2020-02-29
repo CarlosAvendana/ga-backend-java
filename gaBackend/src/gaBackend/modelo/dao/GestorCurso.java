@@ -53,8 +53,7 @@ public class GestorCurso {
             throw new GlobalException("No se ha localizado el Driver");
         } catch (SQLException e) {
             throw new NoDataException("La base de datos no se encuentra disponible");
-        } 
-        
+        }     
         return cursos;
     }
 }
