@@ -3,9 +3,7 @@ package Prueba;
 import exceptions.GlobalException;
 import exceptions.NoDataException;
 import gaBackend.modelo.Carrera;
-import gaBackend.modelo.Curso;
 import gaBackend.modelo.dao.GestorCarrera;
-import gaBackend.modelo.dao.GestorCurso;
 import java.sql.SQLException;
 import java.util.List;
 
