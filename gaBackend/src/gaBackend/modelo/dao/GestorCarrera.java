@@ -20,22 +20,25 @@ import java.util.List;
  */
 public class GestorCarrera {
 
+//<editor-fold desc="Atributos" defaultstate="collapsed">
+    
     private static GestorCarrera instancia = null;
+    private static final String INSERTARCARRERA = "{call PRC_INS_CARRERA( ?, ?, ?)}";
+    private static final String BORRARCARRERA = "{call PRC_DEL_CARRERA(?)}";
+    private static final String ACTUALIZARCARRERA = "{call PRC_UPD_CARRERA(?, ?, ?)}";
+    private static final String LISTARCARRERAS = "{call PRC_ObtieneTODOS_CARRERA()}";
+    private static final String OBTENERCARRERA = "{call PRC_OBTIENE_UNA_CARRERA( ?)}";
 
+    //</editor-fold>
+//<editor-fold desc="métodos" defaultstate="collapsed">
+    
     public static GestorCarrera obtenerInstancia() {
         if (instancia == null) {
             instancia = new GestorCarrera();
         }
         return instancia;
     }
-
-    private static final String INSERTARCARRERA = "{call PRC_INS_CARRERA( ?, ?, ?)}";
-    private static final String BORRARCARRERA = "{call PRC_DEL_CARRERA(?)}";
-    private static final String ACTUALIZARCARRERA = "{call PRC_UPD_CARRERA(?, ?, ?)}";
-    private static final String LISTARCARRERAS = "{call PRC_ObtieneTODOS_CARRERA()}";
-    private static final String OBTENERCARRERA = "{call PRC_OBTIENE_UNA_CARRERA( ?)}";
-    //Falta el buscar Carrera
-
+    
     // C(reate)
     public void insertarCarrera(Carrera carrera) throws GlobalException, NoDataException, SQLException {
         try {
@@ -50,8 +53,8 @@ public class GestorCarrera {
         try {
             pstmt = connection.prepareCall(INSERTARCARRERA);
             pstmt.setString(1, carrera.getCodigo());
-            pstmt.setString(2, carrera.getNombre());
-            pstmt.setString(3, carrera.getTitulo());
+            pstmt.setString(2, carrera.getTitulo());
+            pstmt.setString(3, carrera.getNombre());
 
             boolean resultado = pstmt.execute();
             if (resultado == true) {
@@ -83,8 +86,8 @@ public class GestorCarrera {
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
                     return new Carrera(rs.getString("codigo"),
-                            rs.getString("titulo"),
-                            rs.getString("nombre"));
+                            rs.getString("nombre"),
+                            rs.getString("titulo"));
                 } else {
                     System.err.println(String.format("No se puede localizar el registro: '%s'", codigo));
                 }
@@ -153,7 +156,7 @@ public class GestorCarrera {
                 String codigoB = rs.getString("codigo");
                 String tituloB = rs.getString("titulo");
                 String nombreB = rs.getString("nombre");
-                carreras.add(new Carrera(codigoB, tituloB, nombreB));
+                carreras.add(new Carrera(codigoB, nombreB, tituloB));
             }
             disconnect();
         } catch (ClassNotFoundException ex) {
@@ -164,5 +167,5 @@ public class GestorCarrera {
 
         return carreras;
     }
-
+//</editor-fold>
 }
