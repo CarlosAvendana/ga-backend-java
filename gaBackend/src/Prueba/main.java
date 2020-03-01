@@ -5,11 +5,10 @@ import exceptions.NoDataException;
 import gaBackend.modelo.Carrera;
 import gaBackend.modelo.dao.GestorCarrera;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
- * @author carlos
+ * @author Carlos Obando & Felipe Piedra
  */
 public class main {
 

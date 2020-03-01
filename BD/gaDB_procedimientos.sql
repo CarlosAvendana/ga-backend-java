@@ -60,7 +60,7 @@ END
 //
 DELIMITER ;
 
--- Retrieve Carrera
+-- Retrieve Curso
 DROP PROCEDURE IF EXISTS PRC_OBTIENE_UN_CURSO;
 
 DELIMITER //

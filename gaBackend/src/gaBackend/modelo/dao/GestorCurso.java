@@ -15,10 +15,11 @@ import java.util.List;
 
 /**
  *
- * @author carlos
+ * @author Carlos Obando & Felipe Piedra
  */
 public class GestorCurso {
 
+    //<editor-fold desc="Atributos" defaultstate="collapsed">
     private static final String INSERTARCURSO = "{call PRC_INS_CURSO(?,?,?)}";
     private static final String BORRARCURSO = "{call PRC_DEL_CURSO(?,?,?)}";
     private static final String ACTUALIZACURSO = "{call PRC_UPD_CURSO(?,?,?)}";
@@ -27,6 +28,8 @@ public class GestorCurso {
 
     private static GestorCurso instancia = null;
 
+    //</editor-fold>
+    //<editor-fold desc="Métodos" defaultstate="collapsed">
     public static GestorCurso obtenerInstancia() {
         if (instancia == null) {
             instancia = new GestorCurso();
@@ -172,4 +175,5 @@ public class GestorCurso {
         }
         return cursos;
     }
+    //</editor-fold>
 }

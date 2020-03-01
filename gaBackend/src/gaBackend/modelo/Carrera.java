@@ -2,13 +2,16 @@ package gaBackend.modelo;
 
 /**
  *
- * @author Carlos y Felipe
+ * @author Carlos Obando & Felipe Piedra
  */
 public class Carrera {
+//<editor-fold desc="Atributos" defaultstate="collapsed">
 
     private String codigo;
     private String nombre;
     private String titulo;
+//</editor-fold>
+//<editor-fold desc="Métodos" defaultstate="collapsed">
 
     public Carrera() {
         codigo = new String();
@@ -50,5 +53,5 @@ public class Carrera {
     public String toString() {
         return "Carrera{" + "codigo=" + codigo + ", nombre=" + nombre + ", titulo=" + titulo + '}';
     }
-
+//</editor-fold>
 }

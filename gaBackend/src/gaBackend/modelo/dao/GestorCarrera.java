@@ -16,12 +16,11 @@ import java.util.List;
 
 /**
  *
- * @author carlos
+ * @author Carlos Obando & Felipe Piedra
  */
 public class GestorCarrera {
 
 //<editor-fold desc="Atributos" defaultstate="collapsed">
-    
     private static GestorCarrera instancia = null;
     private static final String INSERTARCARRERA = "{call PRC_INS_CARRERA( ?, ?, ?)}";
     private static final String BORRARCARRERA = "{call PRC_DEL_CARRERA(?)}";
@@ -31,14 +30,13 @@ public class GestorCarrera {
 
     //</editor-fold>
 //<editor-fold desc="métodos" defaultstate="collapsed">
-    
     public static GestorCarrera obtenerInstancia() {
         if (instancia == null) {
             instancia = new GestorCarrera();
         }
         return instancia;
     }
-    
+
     // C(reate)
     public void insertarCarrera(Carrera carrera) throws GlobalException, NoDataException, SQLException {
         try {
