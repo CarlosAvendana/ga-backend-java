@@ -60,6 +60,18 @@ END
 //
 DELIMITER ;
 
+-- Retrieve Carrera
+DROP PROCEDURE IF EXISTS PRC_OBTIENE_UN_CURSO;
+
+DELIMITER //
+CREATE PROCEDURE PRC_OBTIENE_UN_CURSO(codigo_ varchar(10))
+BEGIN
+	SELECT codigo, carrera_codigo, anio, ciclo, nombre,creditos,horas_semanales FROM gadb.curso 
+	where codigo=codigo_;
+END 
+//
+DELIMITER ;
+
 -- Create Curso
 DROP PROCEDURE IF EXISTS PRC_INS_CURSO;
 

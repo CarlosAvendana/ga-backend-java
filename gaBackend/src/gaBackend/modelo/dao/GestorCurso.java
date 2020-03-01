@@ -23,6 +23,7 @@ public class GestorCurso {
     private static final String BORRARCURSO = "{call PRC_DEL_CURSO(?,?,?)}";
     private static final String ACTUALIZACURSO = "{call PRC_UPD_CURSO(?,?,?)}";
     private static final String LISTARCURSOS = "{call PRC_ObtieneTODOS_CURSOS()}";
+    private static final String OBTENERCURSO = "{call PRC_OBTIENE_UN_CURSO(?)}";
 
     private static GestorCurso instancia = null;
 
@@ -70,6 +71,37 @@ public class GestorCurso {
 
     }
 
+    public Curso recuperarCarrera(String codigo) throws GlobalException, NoDataException {
+        try {
+            connection();
+            PreparedStatement stm = connection.prepareStatement(OBTENERCURSO);
+
+            stm.clearParameters();
+
+            stm.setString(1, codigo);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    return new Curso(rs.getString("codigo"),
+                            rs.getString("carrera_codigo"),
+                            rs.getString("anio"),
+                            rs.getString("ciclo"),
+                            rs.getString("creditos"),
+                            rs.getInt("creditos"),
+                            rs.getInt("horas_semanales"));
+                } else {
+                    System.err.println(String.format("No se puede localizar el registro: '%s'", codigo));
+                }
+            }
+            disconnect();
+            return null;
+        } catch (ClassNotFoundException ex) {
+            throw new GlobalException("No se ha localizado el Driver");
+        } catch (SQLException e) {
+            throw new NoDataException("La base de datos no se encuentra disponible");
+        }
+    }
+
     public void actualizarCurso(Curso curso) throws NoDataException, GlobalException, SQLException {
         try {
             connection();
@@ -94,9 +126,9 @@ public class GestorCurso {
             throw new NoDataException("La base de datos no se encuentra disponible");
         }
     }
-    
-    public void eliminarCurso(String codigo) throws GlobalException, NoDataException{
-    try {
+
+    public void eliminarCurso(String codigo) throws GlobalException, NoDataException {
+        try {
             connection();
             PreparedStatement stm = connection.prepareStatement(BORRARCURSO);
 
