@@ -7,6 +7,7 @@ import gaBackend.modelo.Curso;
 import static gaBackend.modelo.dao.Service.connection;
 import static gaBackend.modelo.dao.Service.disconnect;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,6 +33,7 @@ public class GestorCarrera {
     private static final String BORRARCARRERA = "{call PRC_DEL_CARRERA(?)}";
     private static final String ACTUALIZARCARRERA = "{call PRC_UPD_CARRERA(?, ?, ?)}";
     private static final String LISTARCARRERAS = "{call PRC_ObtieneTODOS_CARRERA()}";
+    private static final String OBTENERCARRERA = "{call PRC_OBTIENE_UNA_CARRERA( ?)}";
     //Falta el buscar Carrera
 
     // C(reate)
@@ -68,6 +70,79 @@ public class GestorCarrera {
         }
     }
 
+    //R(etrieve)
+    public Carrera recuperarCarrera(String codigo) throws GlobalException, NoDataException {
+        try {
+            connection();
+            PreparedStatement stm = connection.prepareStatement(OBTENERCARRERA);
+
+            stm.clearParameters();
+
+            stm.setString(1, codigo);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    return new Carrera(rs.getString("codigo"),
+                            rs.getString("titulo"),
+                            rs.getString("nombre"));
+                } else {
+                    System.err.println(String.format("No se puede localizar el registro: '%s'", codigo));
+                }
+            }
+            disconnect();
+            return null;
+        } catch (ClassNotFoundException ex) {
+            throw new GlobalException("No se ha localizado el Driver");
+        } catch (SQLException e) {
+            throw new NoDataException("La base de datos no se encuentra disponible");
+        }
+    }
+
+    //U(pdate)
+    public void actualizarCarrera(Carrera actCarrera) throws NoDataException, GlobalException, SQLException, ClassNotFoundException {
+        try {
+            connection();
+            PreparedStatement stm = connection.prepareStatement(ACTUALIZARCARRERA);
+
+            stm.clearParameters();
+
+            stm.setString(1, actCarrera.getCodigo());
+            stm.setString(2, actCarrera.getTitulo());
+            stm.setString(3, actCarrera.getNombre());
+            if (stm.executeUpdate() != 1) {
+                throw new SQLException();
+            }
+            disconnect();
+        } catch (ClassNotFoundException ex) {
+            throw new GlobalException("No se ha localizado el Driver");
+        } catch (SQLException e) {
+            throw new NoDataException("La base de datos no se encuentra disponible");
+        }
+
+    }
+
+    //D(elete)
+    public void eliminar(String codigo) throws GlobalException, NoDataException {
+        try {
+            connection();
+            PreparedStatement stm = connection.prepareStatement(BORRARCARRERA);
+
+            stm.clearParameters();
+
+            stm.setString(1, codigo);
+
+            if (stm.executeUpdate() != 1) {
+                throw new SQLException();
+            }
+            disconnect();
+        } catch (ClassNotFoundException ex) {
+            throw new GlobalException("No se ha localizado el Driver");
+        } catch (SQLException e) {
+            throw new NoDataException("La base de datos no se encuentra disponible");
+        }
+
+    }
+
     public List<Carrera> listarCarreras() throws NoDataException, GlobalException {
         List<Carrera> carreras = new ArrayList<>();
         try {
@@ -89,4 +164,5 @@ public class GestorCarrera {
 
         return carreras;
     }
+
 }

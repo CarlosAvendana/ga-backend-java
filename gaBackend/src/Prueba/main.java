@@ -6,6 +6,7 @@ import gaBackend.modelo.Carrera;
 import gaBackend.modelo.Curso;
 import gaBackend.modelo.dao.GestorCarrera;
 import gaBackend.modelo.dao.GestorCurso;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -13,15 +14,17 @@ import java.util.List;
  * @author carlos
  */
 public class main {
+    
+    public static void main(String[] args) throws GlobalException, NoDataException, SQLException, ClassNotFoundException {
 
-    public static void main(String[] args) throws GlobalException, NoDataException {
-
-        Carrera carrera1 = new Carrera("X", "X", "X");
+//        Carrera carrera1 = new Carrera("X", "X", "X");
+//        GestorCarrera.obtenerInstancia().insertarCarrera(carrera1);
+//        Carrera carrera2 = new Carrera("X", "X", "X2");
+//        GestorCarrera.obtenerInstancia().actualizarCarrera(carrera2);
+        GestorCarrera.obtenerInstancia().eliminar("X");
         List<Carrera> lista = GestorCarrera.obtenerInstancia().listarCarreras();
         System.out.println(lista.toString());
         
-        List<Curso> listC = GestorCurso.obtenerInstancia().listarCursos();
-        System.out.println(listC.toString());
     }
-
+    
 }

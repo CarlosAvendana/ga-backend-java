@@ -87,3 +87,15 @@ BEGIN
 END 
 //
 DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS PRC_OBTIENE_UNA_CARRERA;
+
+DELIMITER //
+CREATE PROCEDURE PRC_OBTIENE_UNA_CARRERA(codigo_ varchar(10))
+BEGIN
+	SELECT codigo, titulo, nombre FROM gadb.carrera 
+	where codigo=codigo_;
+END 
+//
+DELIMITER ;
