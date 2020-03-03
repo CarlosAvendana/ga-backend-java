@@ -49,6 +49,17 @@ CREATE TABLE IF NOT EXISTS `gaDB`.`curso` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `gaDB`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gaDB`.`usuario` (
+  `cedula` INT NOT NULL,
+  `contrasena` VARCHAR(45) NULL,
+  `nombre` VARCHAR(45) NULL,
+  PRIMARY KEY (`cedula`))
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

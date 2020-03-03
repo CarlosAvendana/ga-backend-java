@@ -1,4 +1,4 @@
-use gaBD;
+use gadb;
 
 INSERT INTO `gadb`.`carrera` (`codigo`, `titulo`, `nombre`) VALUES ('EIF', 'Bachillerato', 'Informática');
 INSERT INTO `gadb`.`carrera` (`codigo`, `titulo`, `nombre`) VALUES ('ETE', 'Bachillerato', 'Administración');
@@ -32,3 +32,9 @@ INSERT INTO `gadb`.`curso` (`codigo`, `carrera_codigo`, `anio`, `ciclo`, `nombre
 INSERT INTO `gadb`.`curso` (`codigo`, `carrera_codigo`, `anio`, `ciclo`, `nombre`, `creditos`, `horas_semanales`) VALUES ('ETE05', 'ETE', '2020', 'II', 'Contabilidad Intermedia', '5', '8');
 
 INSERT INTO `gadb`.`curso` (`codigo`, `carrera_codigo`, `anio`, `ciclo`, `nombre`, `creditos`, `horas_semanales`) VALUES ('MCA12', 'MCA', '2020', 'I', 'Introducción al Lied', '5', '12');
+
+INSERT INTO `gadb`.`usuario` (`cedula`, `contrasena`) VALUES ('402370159', 'carlos');
+INSERT INTO `gadb`.`usuario` (`cedula`, `contrasena`) VALUES ('117280151', 'felipe');
+
+UPDATE `gadb`.`usuario` SET `nombre` = 'Felipe' WHERE (`cedula` = '117280151');
+UPDATE `gadb`.`usuario` SET `nombre` = 'Carlos' WHERE (`cedula` = '402370159');

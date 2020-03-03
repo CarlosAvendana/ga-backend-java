@@ -119,3 +119,38 @@ BEGIN
 END 
 //
 DELIMITER ;
+
+-- All Usuario
+DROP PROCEDURE IF EXISTS PRC_ObtieneTODOS_Usuario;
+
+DELIMITER //
+CREATE PROCEDURE PRC_ObtieneTODOS_Usuario()
+BEGIN
+	SELECT cedula, contrasena, nombre FROM gadb.usuario;
+END 
+//
+DELIMITER ;
+
+-- Retrieve Usuario
+DROP PROCEDURE IF EXISTS PRC_OBTIENE_UN_USUARIO;
+
+DELIMITER //
+CREATE PROCEDURE PRC_OBTIENE_UN_USUARIO(cedula_ int)
+BEGIN
+	SELECT cedula, contrasena, nombre FROM gadb.usuario 
+	where cedula=cedula_;
+END 
+//
+DELIMITER ;
+
+-- Valida Usuario
+DROP PROCEDURE IF EXISTS PRC_VALIDA_USUARIO;
+
+DELIMITER //
+CREATE PROCEDURE PRC_VALIDA_USUARIO(cedula_ int,contrasena_ varchar(45))
+BEGIN
+	SELECT cedula, contrasena FROM gadb.usuario 
+	where cedula=cedula_ AND contrasena=contrasena_;
+END 
+//
+DELIMITER ;
