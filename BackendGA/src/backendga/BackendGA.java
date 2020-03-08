@@ -1,8 +1,6 @@
 package backendga;
 
-import backendga.modelo.Carrera;
-import backendga.modelo.dao.GestorCarrera;
-import java.util.List;
+import backendga.modelo.dao.GestorCurso;
 
 public class BackendGA {
 

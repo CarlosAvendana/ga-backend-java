@@ -9,7 +9,6 @@ public class Carrera {
 
 //</editor-fold>
 //<editor-fold desc="Métodos" defaultstate="collapsed">
-    
     public Carrera() {
         codigo = new String();
         nombre = new String();
@@ -50,6 +49,6 @@ public class Carrera {
     public String toString() {
         return "Carrera{" + "codigo=" + codigo + ", nombre=" + nombre + ", titulo=" + titulo + '}';
     }
-    
+
 //</editor-fold>
 }

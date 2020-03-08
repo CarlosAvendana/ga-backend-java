@@ -1,4 +1,3 @@
-
 package backendga.modelo;
 
 public class Usuario {
