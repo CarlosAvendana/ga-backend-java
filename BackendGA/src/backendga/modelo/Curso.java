@@ -1,5 +1,4 @@
-package gaBackend.modelo;
-
+package backendga.modelo;
 
 public class Curso {
 //<editor-fold desc="Atributos" defaultstate="collapsed">
@@ -11,9 +10,9 @@ public class Curso {
     private String nombre;
     private int creditos;
     private int horas_semanales;
+
 //</editor-fold>
 //<editor-fold desc="Métodos" defaultstate="collapsed">
-
     public Curso() {
         codigo = new String();
         carrera_codigo = new String();
@@ -94,5 +93,6 @@ public class Curso {
     public String toString() {
         return "Curso{" + "codigo=" + codigo + ", carrera_codigo=" + carrera_codigo + ", anio=" + anio + ", ciclo=" + ciclo + ", nombre=" + nombre + ", creditos=" + creditos + ", horas_semanales=" + horas_semanales + '}';
     }
+
 //</editor-fold>
 }

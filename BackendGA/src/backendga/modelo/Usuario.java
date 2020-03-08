@@ -1,5 +1,5 @@
 
-package gaBackend.modelo;
+package backendga.modelo;
 
 public class Usuario {
 
