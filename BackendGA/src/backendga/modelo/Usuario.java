@@ -18,7 +18,12 @@ public class Usuario {
         this.contrasena = contrasena;
         this.nombre = nombre;
     }
-
+    
+    public Usuario(int cedula, String contrasena) {
+        this.cedula = cedula;
+        this.contrasena = contrasena;
+    }
+    
     public int getCedula() {
         return cedula;
     }
