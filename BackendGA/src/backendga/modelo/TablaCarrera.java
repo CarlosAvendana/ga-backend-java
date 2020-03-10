@@ -51,9 +51,10 @@ public class TablaCarrera extends AbstractTableModel {
         }
         return value;
     }
+
     @Override
-    public String getColumnName(int column){
-         String name = "???";
+    public String getColumnName(int column) {
+        String name = "???";
         switch (column) {
             case 0:
                 name = "Codigo";
@@ -66,6 +67,9 @@ public class TablaCarrera extends AbstractTableModel {
                 break;
         }
         return name;
-    
+    }
+
+    public Carrera getRowAt(int row) {
+        return carreras.get(row);
     }
 }
