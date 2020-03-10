@@ -31,6 +31,7 @@ public class GestorCarrera {
     private static final String ACTUALIZARCARRERA = "{call PRC_UPD_CARRERA(?, ?, ?)}";
     private static final String LISTARCARRERAS = "{call PRC_ObtieneTODOS_CARRERA()}";
     private static final String OBTENERCARRERA = "{call PRC_OBTIENE_UNA_CARRERA( ?)}";
+    private static final String CANTIDADCURSOSCARRERA ="{call PRC_CANT_CURSO_CARRERA}";
 
     //</editor-fold>
     //<editor-fold desc="métodos" defaultstate="collapsed">
@@ -219,6 +220,23 @@ public class GestorCarrera {
             }
         }
         return exito;
+    }
+    
+    public int cantCursos(String codigo){
+        int cantidad = 0;
+        try (Connection cnx = DriverManager.getConnection(
+                CONEXION, LOGIN, PASSWORD);
+                Statement stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(LISTARCARRERAS)) {
+            while (rs.next()) {
+                String _cant = rs.getString("cantidad");  
+                cantidad = Integer.parseInt(_cant);
+            }
+        } catch (SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+
+        return cantidad;       
     }
 
     public List<Carrera> listarCarreras() {
