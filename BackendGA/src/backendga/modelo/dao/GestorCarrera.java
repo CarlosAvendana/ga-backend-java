@@ -78,6 +78,25 @@ public class GestorCarrera {
             }
         }
     }
+    public void insertarCarreraDesktop(String cod, String nom, String titu) throws InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException {
+        DBManager bd = null;
+        try {
+            bd = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+            Connection cnx
+                    = bd.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+            try (PreparedStatement stm = cnx.prepareStatement(INSERTARCARRERA)) {
+                stm.clearParameters();
+                stm.setString(1, cod);
+                stm.setString(2, titu);
+                stm.setString(3, nom);
+                stm.executeUpdate();
+            }
+        } finally {
+            if (bd != null) {
+                bd.closeConnection();
+            }
+        }
+    }
 
     //R(etrieve)
     public Carrera recuperarCarrera(String codigo) {
