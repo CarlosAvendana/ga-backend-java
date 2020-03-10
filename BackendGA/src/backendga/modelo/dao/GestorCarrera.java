@@ -78,6 +78,7 @@ public class GestorCarrera {
             }
         }
     }
+
     public void insertarCarreraDesktop(String cod, String nom, String titu) throws InstantiationException, ClassNotFoundException, IllegalAccessException, SQLException {
         DBManager bd = null;
         try {
@@ -155,6 +156,34 @@ public class GestorCarrera {
                 | InstantiationException
                 | SQLException e) {
             e.printStackTrace(System.err);
+        } finally {
+            if (bd != null) {
+                bd.closeConnection();
+            }
+        }
+        return exito;
+    }
+
+    public boolean actualizarCarreraDesktop(String cod, String nom, String titu) throws SQLException, InstantiationException, ClassNotFoundException, IllegalAccessException {
+        boolean exito = false;
+        int registrosActualizados = 0;
+        DBManager bd = null;
+        try {
+            bd = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+            Connection cnx
+                    = bd.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+            try (PreparedStatement stm = cnx.prepareStatement(ACTUALIZARCARRERA)) {
+                stm.clearParameters();
+
+                stm.setString(1, cod);
+                stm.setString(2, titu);
+                stm.setString(3, nom);
+
+                registrosActualizados = stm.executeUpdate();
+
+                exito = registrosActualizados == 1;
+            }
+
         } finally {
             if (bd != null) {
                 bd.closeConnection();
