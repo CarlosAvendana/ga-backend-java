@@ -96,6 +96,18 @@ END
 //
 DELIMITER ;
 
+--Cantidad curso carrera
+DROP PROCEDURE IF EXISTS PRC_CANT_CURSO_CARRERA;
+
+DELIMITER //
+CREATE PROCEDURE PRC_CANT_CURSO_CARRERA(codigo_ varchar(10))
+BEGIN 
+	Select count(*) cantidad from gadb.curso
+	where carrera_codigo = codigo_;
+END
+//
+DELIMITER ;
+
 -- Update Curso
 DROP PROCEDURE IF EXISTS PRC_UPD_CURSO;
 
