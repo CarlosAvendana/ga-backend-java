@@ -15,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class TablaCarrera extends AbstractTableModel {
 
     private ArrayList<Carrera> carreras;
+    private ArrayList<String> codigos;
 
     public TablaCarrera(ArrayList<Carrera> carreras) {
         this.carreras = carreras;
@@ -23,6 +24,15 @@ public class TablaCarrera extends AbstractTableModel {
     public void setCarreras(ArrayList<Carrera> carreras) {
         this.carreras = carreras;
     }
+
+    public ArrayList<String> getCodigos() {
+        return codigos;
+    }
+
+    public void setCodigos(ArrayList<String> codigos) {
+        this.codigos = codigos;
+    }
+    
 
     @Override
     public int getRowCount() {
@@ -71,5 +81,10 @@ public class TablaCarrera extends AbstractTableModel {
 
     public Carrera getRowAt(int row) {
         return carreras.get(row);
+    }
+    public void listarCodigosCarrera(){
+        codigos = new ArrayList();
+        for(int i=0;i<carreras.size();i++)
+            codigos.add(carreras.get(i).getCodigo());
     }
 }
