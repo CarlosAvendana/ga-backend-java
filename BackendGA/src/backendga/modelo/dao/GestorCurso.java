@@ -120,7 +120,7 @@ public class GestorCurso {
     }
     
         public List<Curso> recuperarCursos(String codigo) {
-        ArrayList<Curso> _cursos = new ArrayList();;
+        ArrayList<Curso> _cursos = new ArrayList();
         DBManager bd = null;
         try {
             bd = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
