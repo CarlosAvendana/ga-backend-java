@@ -2,6 +2,7 @@ package backendga.modelo.dao;
 
 import backendga.database.managers.DBManager;
 import backendga.modelo.Carrera;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,6 +32,7 @@ public class GestorCarrera {
     private static final String ACTUALIZARCARRERA = "{call PRC_UPD_CARRERA(?, ?, ?)}";
     private static final String LISTARCARRERAS = "{call PRC_ObtieneTODOS_CARRERA()}";
     private static final String OBTENERCARRERA = "{call PRC_OBTIENE_UNA_CARRERA( ?)}";
+    private static final String OBTENERCARRERAS = "{call PRC_OBTIENE_CARRERAS(?)}";
     private static final String CANTIDADCURSOSCARRERA = "{call PRC_CANT_CURSO_CARRERA(?)}";
 
     //</editor-fold>
@@ -129,6 +131,36 @@ public class GestorCarrera {
             }
         }
         return _carrera;
+    }
+    
+    public List<Carrera> recuperarCarreras(String codigo){
+    ArrayList<Carrera> _carreras = null;
+        DBManager bd = null;
+        try {
+            bd = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+            Connection cnx
+                    = bd.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+
+            try (PreparedStatement stm = cnx.prepareStatement(OBTENERCARRERAS)) {
+                stm.clearParameters();
+                stm.setString(1, codigo);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    _carreras.add(new Carrera(rs.getString("codigo"), rs.getString("titulo"), rs.getString("nombre")));
+                }
+            }
+
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | InstantiationException
+                | SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            if (bd != null) {
+                bd.closeConnection();
+            }
+        }
+        return _carreras;
     }
 
     //U(pdate)

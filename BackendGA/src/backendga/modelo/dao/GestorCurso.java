@@ -31,6 +31,7 @@ public class GestorCurso {
     private static final String ACTUALIZACURSO = "{call PRC_UPD_CURSO(?,?,?,?,?,?,?)}";
     private static final String LISTARCURSOS = "{call PRC_ObtieneTODOS_CURSOS()}";
     private static final String OBTENERCURSO = "{call PRC_OBTIENE_UN_CURSO(?)}";
+    private static final String OBTENERCURSOS = "{call PRC_OBTIENE_CURSOS(?)}";
 
     //</editor-fold>
     //<editor-fold desc="métodos" defaultstate="collapsed">
@@ -116,6 +117,38 @@ public class GestorCurso {
             }
         }
         return _curso;
+    }
+    
+        public List<Curso> recuperarCursos(String codigo) {
+        ArrayList<Curso> _cursos = null;
+        DBManager bd = null;
+        try {
+            bd = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
+            Connection cnx
+                    = bd.getConnection(BASE_DATOS, LOGIN, PASSWORD);
+
+            try (PreparedStatement stm = cnx.prepareStatement(OBTENERCURSOS)) {
+                stm.clearParameters();
+                stm.setString(1, codigo);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    _cursos.add(new Curso(rs.getString("codigo"), rs.getString("carrera_codigo"), rs.getString("anio"),
+                            rs.getString("ciclo"), rs.getString("nombre"),
+                            rs.getInt("creditos"), rs.getInt("horas_semanales")));
+                }
+            }
+
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | InstantiationException
+                | SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            if (bd != null) {
+                bd.closeConnection();
+            }
+        }
+        return _cursos;
     }
 
     //U(pdate)

@@ -12,7 +12,7 @@ END
 //
 DELIMITER ;
 
--- Retrieve Carrera
+-- Retrieve una Carrera
 DROP PROCEDURE IF EXISTS PRC_OBTIENE_UNA_CARRERA;
 
 DELIMITER //
@@ -20,6 +20,18 @@ CREATE PROCEDURE PRC_OBTIENE_UNA_CARRERA(codigo_ varchar(10))
 BEGIN
 	SELECT codigo, titulo, nombre FROM gadb.carrera 
 	where codigo=codigo_;
+END 
+//
+DELIMITER ;
+
+-- Retrieve Carreras
+DROP PROCEDURE IF EXISTS PRC_OBTIENE_CARRERAS;
+
+DELIMITER //
+CREATE PROCEDURE PRC_OBTIENE_CARRERAS(codigo_ varchar(10))
+BEGIN
+	SELECT codigo, titulo, nombre FROM gadb.carrera 
+	where codigo like CONCAT('%',codigo_,'%');
 END 
 //
 DELIMITER ;
@@ -60,7 +72,7 @@ END
 //
 DELIMITER ;
 
--- Retrieve Curso
+-- Retrieve un Curso
 DROP PROCEDURE IF EXISTS PRC_OBTIENE_UN_CURSO;
 
 DELIMITER //
@@ -68,6 +80,18 @@ CREATE PROCEDURE PRC_OBTIENE_UN_CURSO(codigo_ varchar(10))
 BEGIN
 	SELECT codigo, carrera_codigo, anio, ciclo, nombre,creditos,horas_semanales FROM gadb.curso 
 	where codigo=codigo_;
+END 
+//
+DELIMITER ;
+
+-- Retrieve Cursos
+DROP PROCEDURE IF EXISTS PRC_OBTIENE_CURSOS;
+
+DELIMITER //
+CREATE PROCEDURE PRC_OBTIENE_CURSOS(codigo_ varchar(10))
+BEGIN
+	SELECT codigo, carrera_codigo, anio, ciclo, nombre,creditos,horas_semanales FROM gadb.curso 
+	where codigo like CONCAT('%',codigo_,'%');
 END 
 //
 DELIMITER ;
