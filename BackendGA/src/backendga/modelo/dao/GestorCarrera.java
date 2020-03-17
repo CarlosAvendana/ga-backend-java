@@ -134,7 +134,7 @@ public class GestorCarrera {
     }
     
     public List<Carrera> recuperarCarreras(String codigo){
-    ArrayList<Carrera> _carreras = null;
+    ArrayList<Carrera> _carreras = new ArrayList();
         DBManager bd = null;
         try {
             bd = DBManager.getDBManager(DBManager.DB_MGR.MYSQL_SERVER, URL_Servidor);
