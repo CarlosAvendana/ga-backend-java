@@ -33,6 +33,10 @@ public class TablaCurso extends AbstractTableModel {
     public int getColumnCount() {
         return 7;
     }
+    
+    public Curso getRowAt(int row){
+        return cursos.get(row);
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
