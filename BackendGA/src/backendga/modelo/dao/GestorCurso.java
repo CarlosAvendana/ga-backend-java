@@ -32,6 +32,7 @@ public class GestorCurso {
     private static final String LISTARCURSOS = "{call PRC_ObtieneTODOS_CURSOS()}";
     private static final String OBTENERCURSO = "{call PRC_OBTIENE_UN_CURSO(?)}";
     private static final String OBTENERCURSOS = "{call PRC_OBTIENE_CURSOS(?)}";
+    private static final String OBTENERCODIGOS = "{call PRC_OBTIENE_CODIGOS()}";
 
     //</editor-fold>
     //<editor-fold desc="métodos" defaultstate="collapsed">
@@ -118,8 +119,8 @@ public class GestorCurso {
         }
         return _curso;
     }
-    
-        public List<Curso> recuperarCursos(String codigo) {
+
+    public List<Curso> recuperarCursos(String codigo) {
         ArrayList<Curso> _cursos = new ArrayList();
         DBManager bd = null;
         try {
@@ -244,6 +245,23 @@ public class GestorCurso {
         }
 
         return array_cursos;
+    }
+
+    public List<String> codigosCarrera() {
+        List<String> codigos = new ArrayList<>();
+         try (Connection cnx = DriverManager.getConnection(
+                CONEXION, LOGIN, PASSWORD);
+                Statement stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(OBTENERCODIGOS)) {
+            while (rs.next()) {
+                String codigo = rs.getString("codigo");
+                codigos.add(codigo);
+            }
+        } catch (SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+        
+        return codigos;
     }
 
     public void setUrlServidor(String nuevoURL) { // urlServidor
