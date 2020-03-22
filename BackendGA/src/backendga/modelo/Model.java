@@ -119,7 +119,7 @@ public class Model extends Observable {
         this.commit();
     }
 
-    public GestorCurso getGestor() {
+    public GestorCurso getGestorCurso() {
         return gestorCurso;
     }
 
