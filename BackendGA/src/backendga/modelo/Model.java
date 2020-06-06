@@ -25,8 +25,6 @@ public class Model extends Observable {
     private TablaCarrera tablaCarrera;
     private TablaCurso tablaCurso;
     
-    //private ArrayList<Carrera> carreras;
-    //private ArrayList<Curso> cursos;
     
     GestorCurso gestorCurso;
     GestorCarrera gestorCarrera;
@@ -37,10 +35,8 @@ public class Model extends Observable {
     public Model() {
         this.user = new Usuario();
         this.gestorCarrera = new GestorCarrera();
-        //this.carreras = new ArrayList();
         this.tablaCarrera = new TablaCarrera(new ArrayList());
         this.gestorCurso = new GestorCurso();
-        //this.cursos = new ArrayList();
         this.tablaCurso = new TablaCurso(new ArrayList());
         this.CBCarrera = new DefaultComboBoxModel<>();
     }
