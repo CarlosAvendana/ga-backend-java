@@ -22,24 +22,6 @@ public class Model extends Observable {
 
     private Usuario user;
     
-    
-    private TablaCurso tablaCurso;
-    
-    
-    GestorCurso gestorCurso;
-    GestorCarrera gestorCarrera;
-    
-    ComboBoxModel<String> CBCarrera;
-    
-
-    public Model() {
-        this.user = new Usuario();
-        this.gestorCarrera = new GestorCarrera();      
-        this.gestorCurso = new GestorCurso();
-        this.tablaCurso = new TablaCurso(new ArrayList());
-        this.CBCarrera = new DefaultComboBoxModel<>();
-    }
-
     public Model(Usuario user) {
         this.user = user;
     }
@@ -122,4 +104,18 @@ public class Model extends Observable {
         setChanged();
         notifyObservers();
     }
+    public Model() {
+        this.user = new Usuario();
+        this.gestorCarrera = new GestorCarrera();      
+        this.gestorCurso = new GestorCurso();
+        this.tablaCurso = new TablaCurso(new ArrayList());
+        this.CBCarrera = new DefaultComboBoxModel<>();
+    }
+
+    
+     GestorCurso gestorCurso;
+    GestorCarrera gestorCarrera;
+     private TablaCurso tablaCurso;
+    
+    ComboBoxModel<String> CBCarrera;
 }
