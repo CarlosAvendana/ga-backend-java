@@ -25,8 +25,8 @@ public class Model extends Observable {
     private TablaCarrera tablaCarrera;
     private TablaCurso tablaCurso;
     
-    private ArrayList<Carrera> carreras;
-    private ArrayList<Curso> cursos;
+    //private ArrayList<Carrera> carreras;
+    //private ArrayList<Curso> cursos;
     
     GestorCurso gestorCurso;
     GestorCarrera gestorCarrera;
@@ -37,11 +37,11 @@ public class Model extends Observable {
     public Model() {
         this.user = new Usuario();
         this.gestorCarrera = new GestorCarrera();
-        this.carreras = new ArrayList();
-        this.tablaCarrera = new TablaCarrera(carreras);
+        //this.carreras = new ArrayList();
+        this.tablaCarrera = new TablaCarrera(new ArrayList());
         this.gestorCurso = new GestorCurso();
-        this.cursos = new ArrayList();
-        this.tablaCurso = new TablaCurso(cursos);
+        //this.cursos = new ArrayList();
+        this.tablaCurso = new TablaCurso(new ArrayList());
         this.CBCarrera = new DefaultComboBoxModel<>();
     }
 
@@ -78,13 +78,8 @@ public class Model extends Observable {
     public void setTablaCarrera(ArrayList<Carrera> tabla) {
         this.tablaCarrera = new TablaCarrera(tabla);
     }
-
-    public ArrayList<Carrera> getCarreras() {
-        return carreras;
-    }
-
+    
     public void setCarreras(ArrayList<Carrera> carreras) {
-        this.carreras = carreras;
         this.setTablaCarrera(carreras);
         this.commit();
     }
@@ -109,12 +104,7 @@ public class Model extends Observable {
         this.tablaCurso = new TablaCurso(tabla);
     }
 
-    public ArrayList<Curso> getCursos() {
-        return cursos;
-    }
-
     public void setCursos(ArrayList<Curso> cursos) {
-        this.cursos = cursos;
         this.setTablaCurso(cursos);
         this.commit();
     }
