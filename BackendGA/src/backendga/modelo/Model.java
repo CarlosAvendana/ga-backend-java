@@ -22,7 +22,7 @@ public class Model extends Observable {
 
     private Usuario user;
     
-    private TablaCarrera tablaCarrera;
+    
     private TablaCurso tablaCurso;
     
     
@@ -34,8 +34,7 @@ public class Model extends Observable {
 
     public Model() {
         this.user = new Usuario();
-        this.gestorCarrera = new GestorCarrera();
-        this.tablaCarrera = new TablaCarrera(new ArrayList());
+        this.gestorCarrera = new GestorCarrera();      
         this.gestorCurso = new GestorCurso();
         this.tablaCurso = new TablaCurso(new ArrayList());
         this.CBCarrera = new DefaultComboBoxModel<>();
@@ -67,18 +66,7 @@ public class Model extends Observable {
     //------------------------------------------------------------
     //------------------- MODEL CARRERA---------------------------
     //------------------------------------------------------------
-    public TablaCarrera getTablaCarrera() {
-        return tablaCarrera;
-    }
 
-    public void setTablaCarrera(ArrayList<Carrera> tabla) {
-        this.tablaCarrera = new TablaCarrera(tabla);
-    }
-    
-    public void setCarreras(ArrayList<Carrera> carreras) {
-        this.setTablaCarrera(carreras);
-        this.commit();
-    }
 
     public GestorCarrera getGestorCarrera() {
         return gestorCarrera;
